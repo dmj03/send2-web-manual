@@ -127,12 +127,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
 
   return (
     <>
-      {/* ── Desktop static sidebar ── */}
-      <aside className="hidden w-60 shrink-0 border-r border-border bg-background md:block">
-        {SidebarContent}
-      </aside>
-
-      {/* ── Mobile overlay ── */}
+      {/* ── Mobile overlay only — no desktop sidebar ── */}
       {open && (
         <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="Navigation menu">
           {/* Backdrop */}

@@ -9,10 +9,37 @@ const PUBLIC_ROUTES: RegExp[] = [
   /^\/news(\/.*)?$/,
   /^\/about-us$/,
   /^\/contact-us$/,
+  /^\/terms$/,
+  /^\/privacy$/,
+  /^\/faq$/,
+  /^\/cookie-policy$/,
+  /^\/compare$/,
+  /^\/quiz(\/.*)?$/,
 ];
 
-const AUTH_ROUTES: RegExp[] = [/^\/authentication(\/.*)?$/];
-const PROFILE_ROUTES: RegExp[] = [/^\/profile(\/.*)?$/];
+const AUTH_ROUTES: RegExp[] = [
+  /^\/login$/,
+  /^\/register(\/.*)?$/,
+  /^\/forgot-password(\/.*)?$/,
+  /^\/change-password$/,
+  /^\/otp$/,
+  /^\/reactivate$/,
+  // Legacy Angular paths (handled by next.config.ts redirects, but guard here too)
+  /^\/authentication(\/.*)?$/,
+];
+
+const PROFILE_ROUTES: RegExp[] = [
+  /^\/dashboard$/,
+  /^\/personal-info$/,
+  /^\/notifications$/,
+  /^\/referral$/,
+  /^\/search-history$/,
+  /^\/consent$/,
+  /^\/rate-alerts(\/.*)?$/,
+  /^\/settings(\/.*)?$/,
+  /^\/profile(\/.*)?$/,
+];
+
 const PROFILE_SETUP_PATH = '/profile/setup';
 
 function isPublic(pathname: string)      { return PUBLIC_ROUTES.some(re => re.test(pathname)); }
@@ -42,19 +69,19 @@ export function middleware(request: NextRequest): NextResponse {
 
   if (isProfileRoute(pathname)) {
     if (!isAuthenticated) {
-      const loginUrl = new URL('/authentication/login', request.url);
+      const loginUrl = new URL('/login', request.url);
       loginUrl.searchParams.set('callbackUrl', pathname);
       return NextResponse.redirect(loginUrl);
     }
     const profileComplete = request.cookies.get('profile_complete')?.value === 'true';
     if (!profileComplete && pathname !== PROFILE_SETUP_PATH) {
-      return NextResponse.redirect(new URL(PROFILE_SETUP_PATH, request.url));
+      return NextResponse.next(); // Skip profile/setup enforcement for now — page doesn't exist yet
     }
     return NextResponse.next();
   }
 
   if (!isAuthenticated) {
-    const loginUrl = new URL('/authentication/login', request.url);
+    const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('callbackUrl', pathname);
     return NextResponse.redirect(loginUrl);
   }
