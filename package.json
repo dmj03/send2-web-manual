@@ -29,6 +29,7 @@
     "zustand": "5.0.3"
   },
   "devDependencies": {
+    "@mswjs/interceptors": "^0.41.3",
     "@tailwindcss/postcss": "4.1.4",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.2",

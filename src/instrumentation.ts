@@ -1,5 +1,6 @@
 export async function register() {
   if (
+    process.env.NEXT_RUNTIME === 'nodejs' &&
     process.env['NEXT_PUBLIC_USE_MOCKS'] === 'true' &&
     process.env.NODE_ENV === 'development'
   ) {
