@@ -1,0 +1,1 @@
+export { useNewsFilter } from './useNewsFilter';
