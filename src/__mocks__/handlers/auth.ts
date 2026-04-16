@@ -3,7 +3,7 @@ import type { LoginCredentials, RegisterPayload, ForgotPasswordPayload, ResetPas
 import type { ApiResponse } from '@/types/api';
 import { mockUser } from '../fixtures/users';
 
-const BASE = '/auth';
+const BASE = 'https://api.send2app.com/auth';
 
 const mockAccessToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mockpayload.mocksignature';

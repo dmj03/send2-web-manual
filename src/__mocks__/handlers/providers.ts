@@ -8,7 +8,7 @@ import {
   mockReviews,
 } from '../fixtures/providers';
 
-const BASE = '/providers';
+const BASE = 'https://api.send2app.com/providers';
 
 export const providerHandlers = [
   /** GET /providers — full provider list */

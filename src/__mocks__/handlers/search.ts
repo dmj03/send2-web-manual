@@ -4,7 +4,7 @@ import { mockSearchResults, mockSearchSuggestions } from '../fixtures/search';
 
 export const searchHandlers = [
   /** GET /search — 400 ms simulated latency */
-  http.get('/search', async ({ request }) => {
+  http.get('https://api.send2app.com/search', async ({ request }) => {
     await delay(400);
 
     const url = new URL(request.url);
@@ -29,7 +29,7 @@ export const searchHandlers = [
   }),
 
   /** GET /search/suggest — autocomplete for destination country/currency */
-  http.get('/search/suggest', ({ request }) => {
+  http.get('https://api.send2app.com/search/suggest', ({ request }) => {
     const url = new URL(request.url);
     const q = (url.searchParams.get('q') ?? '').toLowerCase();
 
@@ -45,7 +45,7 @@ export const searchHandlers = [
   }),
 
   /** GET /rates/live — live mid-market rates */
-  http.get('/rates/live', ({ request }) => {
+  http.get('https://api.send2app.com/rates/live', ({ request }) => {
     const url = new URL(request.url);
     const base = url.searchParams.get('base') ?? 'GBP';
 
