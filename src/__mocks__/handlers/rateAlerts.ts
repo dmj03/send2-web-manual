@@ -3,7 +3,7 @@ import type { ApiResponse } from '@/types/api';
 import type { RateAlert } from '@/types/rate-alert';
 import { mockRateAlerts, mockRateAlert } from '../fixtures/rateAlerts';
 
-const BASE = 'https://api.send2app.com/rate-alerts';
+const BASE = '/rate-alerts';
 
 // In-memory store for the handler session
 let alertStore: RateAlert[] = [...mockRateAlerts];

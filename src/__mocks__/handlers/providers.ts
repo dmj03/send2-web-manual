@@ -8,15 +8,9 @@ import {
   mockReviews,
 } from '../fixtures/providers';
 
-const BASE = 'https://api.send2app.com/providers';
+const BASE = '/providers';
 
 export const providerHandlers = [
-  /** GET /providers/featured — homepage featured providers */
-  http.get(`${BASE}/featured`, () => {
-    const featured = mockProviders.slice(0, 6);
-    return HttpResponse.json({ data: featured } satisfies ApiResponse<typeof featured>);
-  }),
-
   /** GET /providers — full provider list */
   http.get(BASE, () => {
     const payload: ApiResponse<typeof mockProviders> = {

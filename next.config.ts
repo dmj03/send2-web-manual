@@ -28,13 +28,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "api.send2app.com" },
       { protocol: "https", hostname: "cdn.send2app.com" },
-      { protocol: "https", hostname: "cdn.send2.io" },
-      { protocol: "https", hostname: "api.dicebear.com" },
-      { protocol: "https", hostname: "*.wise.com" },
-      { protocol: "https", hostname: "*.westernunion.com" },
-      { protocol: "https", hostname: "*.remitly.com" },
-      { protocol: "https", hostname: "*.worldremit.com" },
-      { protocol: "https", hostname: "*.moneygram.com" },
     ],
   },
   async headers() {

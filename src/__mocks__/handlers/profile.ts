@@ -3,7 +3,7 @@ import type { ApiResponse } from '@/types/api';
 import type { User } from '@/types/auth';
 import { mockUser } from '../fixtures/users';
 
-const BASE = 'https://api.send2app.com/profile';
+const BASE = '/profile';
 
 let profileStore: User = { ...mockUser };
 

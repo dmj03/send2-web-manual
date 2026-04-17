@@ -29,7 +29,6 @@
     "zustand": "5.0.3"
   },
   "devDependencies": {
-    "@mswjs/interceptors": "^0.41.3",
     "@tailwindcss/postcss": "4.1.4",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.2",
@@ -41,7 +40,7 @@
     "eslint": "9.25.1",
     "eslint-config-next": "15.3.0",
     "jsdom": "^26.1.0",
-    "msw": "^2.13.3",
+    "msw": "^2.7.5",
     "postcss": "8.5.3",
     "prettier": "3.5.3",
     "prettier-plugin-tailwindcss": "0.6.11",

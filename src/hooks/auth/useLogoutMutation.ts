@@ -5,17 +5,14 @@ import { apiClient, ApiClientError } from '@/lib/api/client';
 import { authEndpoints } from '@/lib/api/endpoints';
 import { useAuthStore } from '@/stores/authStore';
 
-function clearAuthCookies() {
-  document.cookie = 'auth_token=; path=/; max-age=0; SameSite=Lax';
-  document.cookie = 'profile_complete=; path=/; max-age=0; SameSite=Lax';
-}
-
 export function useLogoutMutation() {
   const queryClient = useQueryClient();
   const { logout } = useAuthStore();
 
   return useMutation<void, ApiClientError, void>({
     mutationFn: async () => {
+      // Best-effort server-side logout — if the token is already expired the
+      // call will fail; we still clear local state regardless.
       try {
         await apiClient.post<void>(authEndpoints.logout);
       } catch {
@@ -23,8 +20,8 @@ export function useLogoutMutation() {
       }
     },
     onSettled: () => {
-      clearAuthCookies();
       logout();
+      // Wipe every cached query so no stale user-scoped data leaks after logout
       queryClient.clear();
     },
   });

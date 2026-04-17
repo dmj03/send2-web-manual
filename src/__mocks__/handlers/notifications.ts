@@ -3,7 +3,7 @@ import type { ApiResponse } from '@/types/api';
 import type { AppNotification } from '@/types/notification';
 import { mockNotifications } from '../fixtures/notifications';
 
-const BASE = 'https://api.send2app.com/notifications';
+const BASE = '/notifications';
 
 let notificationStore: AppNotification[] = [...mockNotifications];
 

@@ -14,12 +14,6 @@ interface LoginResponse {
   refreshToken: string;
 }
 
-function setAuthCookie(token: string) {
-  const maxAge = 60 * 60 * 24 * 7; // 7 days
-  document.cookie = `auth_token=${token}; path=/; max-age=${maxAge}; SameSite=Lax`;
-  document.cookie = `profile_complete=true; path=/; max-age=${maxAge}; SameSite=Lax`;
-}
-
 export function useLoginMutation() {
   const queryClient = useQueryClient();
   const { login } = useAuthStore();
@@ -34,7 +28,7 @@ export function useLoginMutation() {
     },
     onSuccess: (data) => {
       login(data.user, data.token, data.refreshToken);
-      setAuthCookie(data.token);
+      // Seed profile cache immediately so useProfileQuery doesn't flash loading
       queryClient.invalidateQueries({ queryKey: ['profile'] });
     },
   });

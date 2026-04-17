@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw';
 import type { ApiResponse } from '@/types/api';
 import { mockArticles, mockArticle, mockPromotions } from '../fixtures/content';
 
-const BASE = 'https://api.send2app.com/content';
+const BASE = '/content';
 
 export const contentHandlers = [
   /** GET /content/articles — paginated list */

@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
-import { Raleway } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import Providers from '@/components/providers/Providers'
-import { MockProvider } from '@/components/providers/MockProvider'
 import { Navbar } from '@/components/navigation'
 
-const raleway = Raleway({ subsets: ['latin'], variable: '--font-raleway' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env['NEXT_PUBLIC_SITE_URL'] ?? 'https://send2.com'),
@@ -38,17 +37,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={raleway.variable} suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <Providers>
-          <MockProvider>
-            <div className="flex min-h-screen flex-col">
-              <Navbar />
-              <div className="flex flex-1">
-                <main className="flex-1 overflow-x-hidden">{children}</main>
-              </div>
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <div className="flex flex-1">
+              <main className="flex-1 overflow-x-hidden">{children}</main>
             </div>
-          </MockProvider>
+          </div>
         </Providers>
       </body>
     </html>
